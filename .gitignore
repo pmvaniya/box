@@ -1,3 +1,5 @@
 OpenWebText/
 __pycache__/
 data/
+BPE/encoded_textfiles.csv
+BPE/file_metadata.json
