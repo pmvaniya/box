@@ -1,5 +1,6 @@
 import os
 import tarfile
+import requests
 from pathlib import Path
 from shutil import rmtree
 from random import choice
@@ -96,6 +97,41 @@ def extract_open_web_text(DATA_DIR):
 
     rmtree(STAGE1_DIR)
     print(f"{SUCCESS_M} All archives extracted successfully.")
+
+
+def download_owt(DATA_DIR):
+    title("Downloading OpenWebText")
+    print(f"{INFO_M} Starting Download")
+
+    OWT_DIR = DATA_DIR / "OpenWebText"
+
+    if os.path.exists(OWT_DIR):
+        rmtree(OWT_DIR)
+
+    os.mkdir(OWT_DIR)
+
+    url = "http://google.com/favicon.ico"
+    r = requests.get(url, allow_redirects=True)
+    open(OWT_DIR / "google.ico", "wb").write(r.content)
+
+    links = [
+        f"https://huggingface.co/datasets/Skylion007/openwebtext/resolve/main/subsets/urlsf_subset{i:02}.tar?download=true"
+        for i in range(21)
+    ]
+
+    for link in links:
+        name = link.split("/")[-1].split("?")[0]
+        download_path = OWT_DIR / name
+        print(f"{INFO_M} Downloading {name}")
+
+        try:
+            response = requests.get(link)
+            open(download_path, "wb").write(response.content)
+        except:
+            print(f"{DANGER_M} Internet?")
+            panic()
+    
+    print(f"{INFO_M} Downloaded all files successfully.")
 
 
 def random_bs_go():

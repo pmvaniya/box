@@ -2,6 +2,7 @@ import os
 from json import dump, load
 from shutil import rmtree
 from collections import Counter
+from io import StringIO
 
 from .utils import check_dir_exists, title, panic, read_file
 from .utils import INFO_M, DANGER_M, SUCCESS_M
@@ -38,14 +39,19 @@ def generate_bpe_mapping(DATA_DIR, corpus_size=500000, max_tokens=2056, min_freq
         print(f"{DANGER_M} {extracted_folders[0]} directory is empty.")
         panic()
 
-    text = ""
+    textIO = StringIO()
 
     for textfile in textfiles:
         textfile_path = textfolder / textfile
-        text += read_file(textfile_path) + "\n"
 
-        if len(text) > corpus_size:
+        textIO.write(read_file(textfile_path))
+        textIO.write("\n")
+
+        if textIO.tell() > corpus_size:  # length of string
             break
+
+    text = textIO.getvalue()
+    textIO.close()
 
     token_ids, frequencies = bpe(text, max_tokens, min_freq)
 
