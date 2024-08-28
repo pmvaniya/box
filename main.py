@@ -4,7 +4,7 @@ from time import perf_counter
 
 from src.utils import extract_open_web_text, title, random_bs_go
 from src.utils import INFO_M
-from src.tokenizer import generate_bpe_mapping
+from src.tokenizer import generate_bpe_mapping, convert_data_to_csv
 
 CURR_DIR = Path(__file__).parent
 DATA_DIR = CURR_DIR / "data"
@@ -23,8 +23,11 @@ if __name__ == "__main__":
 
         elif argv[1] == "bpe" or argv[1] == "generate-tokens":
             generate_bpe_mapping(
-                DATA_DIR, corpus_size=5000000, max_tokens=1000, min_freq=50
+                DATA_DIR, corpus_size=5000000, max_tokens=1000, min_freq=100
             )
+
+        elif argv[1] == "convert":
+            convert_data_to_csv(DATA_DIR)
 
         else:
             title("Something is Wrong")

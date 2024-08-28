@@ -79,7 +79,7 @@ def extract_open_web_text(DATA_DIR):
 
     print(f"{INFO_M} Starting archive extractions")
 
-    for subset_tar in subset_tars[:1]:
+    for subset_tar in subset_tars:
         print(
             f"{INFO_M} Extracting {subset_tar} (archive {subset_counter} of {total_subset_tars})"
         )
@@ -87,7 +87,7 @@ def extract_open_web_text(DATA_DIR):
         extraction_path = EXTRACTED_DIR / subset_tar[:-4]  # remove '.tar' from name
         extract_tar_file(subset_tar_path, STAGE1_DIR)
 
-        for child_tar in os.listdir(STAGE1_TEMP_DIR)[:25]:
+        for child_tar in os.listdir(STAGE1_TEMP_DIR):
             child_tar_path = STAGE1_TEMP_DIR / child_tar
             extract_tar_file(child_tar_path, extraction_path)
 
