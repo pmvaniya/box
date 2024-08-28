@@ -1,4 +1,5 @@
-/OpenWebText/
-/__pycache__/
-/data/
-/BPE/data/
+__pycache__/
+/data/OpenWebText
+/data/stage1
+/data/extracted
+/backup
