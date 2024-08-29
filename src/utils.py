@@ -147,6 +147,7 @@ def random_bs_go():
         "If it is humanly possible, consider it to be within your reach.",
         "We judge others by their actions while we judge ourselves by our intentions.",
         "The magic lies within you.",
+        "Check out 'Andrej Karpathy' on YouTube (https://www.youtube.com/@AndrejKarpathy)"
     ]
 
     print(f"{INFO_M} {choice(bs)}")
