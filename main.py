@@ -3,8 +3,9 @@ from pathlib import Path
 from time import perf_counter
 
 from src.utils import extract_open_web_text, title, random_bs_go, download_owt
-from src.utils import INFO_M
+from src.utils import INFO_M, DANGER_M
 from src.tokenizer import generate_bpe_mapping, convert_data_to_csv
+from src.slp import train_slp
 
 CURR_DIR = Path(__file__).parent
 DATA_DIR = CURR_DIR / "data"
@@ -31,6 +32,13 @@ if __name__ == "__main__":
 
         elif argv[1] == "download":
             download_owt(DATA_DIR)
+
+        elif argv[1] == "train":
+            if argv[2] == "slp":
+                train_slp(DATA_DIR)
+
+            else:
+                print(f"{DANGER_M} Incorrect option '{argv[2]}'")
 
         else:
             title("Something is Wrong")

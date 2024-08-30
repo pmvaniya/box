@@ -4,3 +4,4 @@ __pycache__/
 /data/extracted
 /backup
 /data/csv_data
+.ipynb_checkpoints

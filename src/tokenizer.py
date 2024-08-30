@@ -221,7 +221,7 @@ def convert_data_to_csv(DATA_DIR):
 
             textfile_counter += 1
 
-            if textfile_counter % 10000 == 0:
+            if textfile_counter % 1000 == 0:
                 csv_file_counter += 1
                 csv_file_path = CSV_DIR / ("csv_data_%06d.csv" % (csv_file_counter))
                 csv_file = open(csv_file_path, "a")
@@ -265,3 +265,6 @@ def encode_text(text, stoi):
     encoded_text.append(stoi["<<End>>"])
 
     return encoded_text
+
+def decode_tokens(tokens, itos):
+    return "".join([itos[id] for id in tokens])
