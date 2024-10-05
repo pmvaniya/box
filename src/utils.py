@@ -110,19 +110,18 @@ def download_owt(DATA_DIR):
 
     os.mkdir(OWT_DIR)
 
-    url = "http://google.com/favicon.ico"
-    r = requests.get(url, allow_redirects=True)
-    open(OWT_DIR / "google.ico", "wb").write(r.content)
+    total_subset_files = 21
+    counter = 1
 
     links = [
         f"https://huggingface.co/datasets/Skylion007/openwebtext/resolve/main/subsets/urlsf_subset{i:02}.tar?download=true"
-        for i in range(21)
+        for i in range(total_subset_files)
     ]
 
     for link in links:
         name = link.split("/")[-1].split("?")[0]
         download_path = OWT_DIR / name
-        print(f"{INFO_M} Downloading {name}")
+        print(f"{INFO_M} Downloading {name} (file {counter} of {total_subset_files})")
 
         try:
             response = requests.get(link)
@@ -130,7 +129,7 @@ def download_owt(DATA_DIR):
         except:
             print(f"{DANGER_M} Internet?")
             panic()
-    
+
     print(f"{INFO_M} Downloaded all files successfully.")
 
 
@@ -147,7 +146,7 @@ def random_bs_go():
         "If it is humanly possible, consider it to be within your reach.",
         "We judge others by their actions while we judge ourselves by our intentions.",
         "The magic lies within you.",
-        "Check out 'Andrej Karpathy' on YouTube (https://www.youtube.com/@AndrejKarpathy)"
+        "Check out 'Andrej Karpathy' on YouTube (https://www.youtube.com/@AndrejKarpathy)",
     ]
 
     print(f"{INFO_M} {choice(bs)}")
