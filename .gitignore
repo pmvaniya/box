@@ -2,6 +2,7 @@ __pycache__/
 /data/OpenWebText
 /data/stage1
 /data/extracted
+/data/converted
 /backup
 /data/csv_data
 .ipynb_checkpoints

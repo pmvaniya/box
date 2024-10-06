@@ -1,5 +1,7 @@
 # Box: On-Device LLM for Smartphones
 
+```DO NOT REFER TO THIS README FOR NOW. WILL BE UPDATED LATER SOON.```
+
 `Box` is an on-device Large Language Model (LLM) designed specifically for smartphones. It operates entirely on-device, ensuring all computations are done locally without the need for server-side processing.
 
 <br />
